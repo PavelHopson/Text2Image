@@ -50,7 +50,27 @@ export async function enhancePrompt(userPrompt: string, style: string): Promise<
     return d.choices?.[0]?.message?.content || userPrompt;
   }
 
+  if (config.provider === 'ollama') {
+    const baseUrl = getOllamaBaseUrl();
+    const r = await fetch(`${baseUrl}/api/generate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: config.model, prompt: `${systemPrompt}\n\nПромпт: ${userPrompt}`, stream: false }),
+    });
+    const d = await r.json();
+    return d.response?.trim() || userPrompt;
+  }
+
   return userPrompt;
+}
+
+function getOllamaBaseUrl(): string {
+  try {
+    const config = JSON.parse(localStorage.getItem('text2image-ollama-config') || '{}');
+    return config.baseUrl || 'http://localhost:11434';
+  } catch {
+    return 'http://localhost:11434';
+  }
 }
 
 // ====== IMAGE GENERATION ======
@@ -66,6 +86,11 @@ export async function generateImage(prompt: string, aspectRatio: string): Promis
   }
   if (config.provider === 'openrouter' && config.apiKey) {
     return generateWithOpenRouter(prompt, config);
+  }
+  if (config.provider === 'ollama') {
+    // Ollama can't generate images — return placeholder with seed from prompt
+    const seed = Math.abs(hashCode(prompt));
+    return `https://picsum.photos/seed/${seed}/1024/1024`;
   }
 
   // Fallback — placeholder

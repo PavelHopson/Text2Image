@@ -1,4 +1,4 @@
-export type AIProvider = 'gemini' | 'openai' | 'openrouter';
+export type AIProvider = 'gemini' | 'openai' | 'openrouter' | 'ollama';
 
 export interface AIConfig {
   provider: AIProvider;
@@ -21,6 +21,11 @@ export const AI_PROVIDERS: Record<AIProvider, { name: string; models: string[]; 
     name: 'OpenRouter',
     models: ['google/gemini-2.0-flash-exp:free', 'stabilityai/stable-diffusion-3', 'black-forest-labs/flux-1.1-pro'],
     placeholder: 'sk-or-...',
+  },
+  ollama: {
+    name: 'Ollama (Локально)',
+    models: ['huihui-ai/Huihui-Qwen3.5-35B-A3B-abliterated', 'llama3.2-vision', 'llava', 'bakllava'],
+    placeholder: 'http://localhost:11434',
   },
 };
 

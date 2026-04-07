@@ -3,18 +3,25 @@ import { Save, CheckCircle, Eye, EyeOff, Zap, ExternalLink } from 'lucide-react'
 import { getAIConfig, saveAIConfig } from '../services/aiService';
 import { AIProvider, AI_PROVIDERS } from '../types';
 
+const OLLAMA_CONFIG_KEY = 'text2image-ollama-config';
+
 export const Settings: React.FC = () => {
   const [provider, setProvider] = useState<AIProvider>('gemini');
   const [apiKey, setApiKey] = useState('');
   const [model, setModel] = useState('');
   const [showKey, setShowKey] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [ollamaBaseUrl, setOllamaBaseUrl] = useState('http://localhost:11434');
 
   useEffect(() => {
     const c = getAIConfig();
     setProvider(c.provider);
     setApiKey(c.apiKey);
     setModel(c.model);
+    try {
+      const oc = JSON.parse(localStorage.getItem(OLLAMA_CONFIG_KEY) || '{}');
+      if (oc.baseUrl) setOllamaBaseUrl(oc.baseUrl);
+    } catch {}
   }, []);
 
   const handleProviderChange = (p: AIProvider) => {
@@ -25,6 +32,9 @@ export const Settings: React.FC = () => {
 
   const handleSave = () => {
     saveAIConfig({ provider, apiKey, model });
+    if (provider === 'ollama') {
+      localStorage.setItem(OLLAMA_CONFIG_KEY, JSON.stringify({ baseUrl: ollamaBaseUrl }));
+    }
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
   };
@@ -33,6 +43,7 @@ export const Settings: React.FC = () => {
     gemini: 'https://ai.google.dev/gemini-api/docs/api-key',
     openai: 'https://platform.openai.com/api-keys',
     openrouter: 'https://openrouter.ai/keys',
+    ollama: 'https://ollama.com/download',
   };
 
   return (
@@ -56,7 +67,7 @@ export const Settings: React.FC = () => {
         {/* Provider */}
         <div>
           <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 block">Провайдер</label>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {(Object.keys(AI_PROVIDERS) as AIProvider[]).map((p) => (
               <button
                 key={p}
@@ -95,7 +106,23 @@ export const Settings: React.FC = () => {
           />
         </div>
 
+        {/* Ollama Base URL */}
+        {provider === 'ollama' && (
+          <div>
+            <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 block">Base URL</label>
+            <input
+              type="text"
+              value={ollamaBaseUrl}
+              onChange={(e) => setOllamaBaseUrl(e.target.value)}
+              placeholder="http://localhost:11434"
+              className="input-field text-sm font-mono"
+            />
+            <p className="text-[10px] text-gray-500 mt-1">Ollama работает локально, API ключ не нужен. Промпты улучшаются без цензуры.</p>
+          </div>
+        )}
+
         {/* API Key */}
+        {provider !== 'ollama' && (
         <div>
           <div className="flex items-center justify-between mb-2">
             <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider">API Ключ</label>
@@ -124,6 +151,7 @@ export const Settings: React.FC = () => {
             </button>
           </div>
         </div>
+        )}
 
         {/* Save */}
         <button onClick={handleSave} className="btn-primary w-full flex items-center justify-center gap-2">
