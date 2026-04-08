@@ -202,6 +202,36 @@ const PROMPTS: PromptTemplate[] = [
     category: 'transform',
     tags: ['стиль-трансфер', 'трансформация'],
   },
+
+  // Hyper-realism
+  {
+    id: 'hyper-real-selfie',
+    title: 'Гиперреалистичное селфи',
+    prompt: 'Ultra-realistic smartphone mirror selfie, close-up framing collarbone to top of head. Natural skin with visible pores, micro-texture, organic imperfections, uneven pigmentation, natural oil sheen on high points. Real daylight with slight warmth, accurate white balance. Phone-camera realism, subtle sensor grain, slight edge softness. No retouching, no smoothing, no beauty filters, no AI glow, no plastic skin',
+    category: 'photo',
+    tags: ['гиперреализм', 'селфи', 'кожа'],
+  },
+  {
+    id: 'macro-skin-editorial',
+    title: 'Макро-кожа (editorial)',
+    prompt: 'Photorealistic close-up of skin texture, visible pores, natural imperfections and redness. Bare skin, no makeup, soft side lighting emphasizing texture. Editorial realism, cinematic color grading, ultra-high resolution, unretouched beauty photography',
+    category: 'photo',
+    tags: ['макро', 'кожа', 'editorial'],
+  },
+  {
+    id: 'macro-eye',
+    title: 'Макро-глаз',
+    prompt: 'Extreme close-up of a human eye and surrounding skin, ultra-realistic macro photography. Visible fine lines, pores, natural skin sheen, subtle under-eye texture. Soft diffused lighting, realistic shadows, high dynamic range. Editorial beauty photography, no airbrushing, hyper-detailed skin realism',
+    category: 'photo',
+    tags: ['макро', 'глаз', 'гиперреализм'],
+  },
+  {
+    id: 'realistic-hands',
+    title: 'Реалистичные руки',
+    prompt: 'Ultra-realistic close-up of hands holding a smartphone. Natural skin texture, visible veins and fine wrinkles. Detailed nail art. Soft natural light, realistic proportions, shallow depth of field. Photorealistic hand anatomy, high detail macro shot',
+    category: 'photo',
+    tags: ['руки', 'макро', 'гиперреализм'],
+  },
 ];
 
 export const PromptCatalog: React.FC<{ onUsePrompt?: (prompt: string) => void }> = ({ onUsePrompt }) => {
