@@ -203,6 +203,36 @@ const PROMPTS: PromptTemplate[] = [
     tags: ['стиль-трансфер', 'трансформация'],
   },
 
+  // Cinema & Animation
+  {
+    id: 'interstellar-style',
+    title: 'Interstellar кинематография',
+    prompt: 'IMAX 70mm film look, vast landscapes, anamorphic lens flares, deep blacks, muted earth tones, Hoyte van Hoytema cinematography style, cinematic aspect ratio, grain texture, epic scale',
+    category: 'scene',
+    tags: ['кино', 'interstellar', 'IMAX'],
+  },
+  {
+    id: 'blade-runner-style',
+    title: 'Blade Runner нуар',
+    prompt: 'Neon-soaked dystopian cityscape, rain and fog, volumetric light beams, teal-orange color grade, Roger Deakins lighting, 35mm anamorphic bokeh, reflective wet surfaces, noir atmosphere',
+    category: 'scene',
+    tags: ['кино', 'blade runner', 'нуар'],
+  },
+  {
+    id: 'ghibli-style',
+    title: 'Studio Ghibli стиль',
+    prompt: 'Studio Ghibli anime style, soft watercolor backgrounds, hand-drawn feel, lush green nature, warm pastel palette, Miyazaki-style whimsical atmosphere, gentle clouds, cozy village',
+    category: 'art',
+    tags: ['ghibli', 'аниме', 'miyazaki'],
+  },
+  {
+    id: 'pixar-style',
+    title: 'Pixar / Disney 3D',
+    prompt: 'Pixar-quality 3D render, stylized character design, expressive large eyes, subsurface scattering skin, vibrant saturated colors, global illumination, cinematic Pixar lighting, heartwarming scene',
+    category: 'art',
+    tags: ['pixar', 'disney', '3D', 'мультфильм'],
+  },
+
   // Hyper-realism
   {
     id: 'hyper-real-selfie',
