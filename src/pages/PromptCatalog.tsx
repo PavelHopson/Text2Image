@@ -233,6 +233,15 @@ const PROMPTS: PromptTemplate[] = [
     tags: ['pixar', 'disney', '3D', 'мультфильм'],
   },
 
+  // Cinematic / Indie
+  {
+    id: 'indie-memory',
+    title: 'Indie Film / Воспоминание',
+    prompt: 'A quiet moment that feels remembered rather than photographed. Abandoned outdoor location, late evening blue hour, fading residual daylight. Washed-out tones with gentle color separation, very low contrast, almost flat. Experimental indie film aesthetic, memory archive look. 40-58mm documentary lens, selective focus, organic grain resembling scanned film, raw anti-gloss, intentionally imperfect. 5-image narrative grid: extreme close-up of hands, reflection in scratched metal, medium shot from behind, side profile through tall grass, wide shot where subject dissolves into space',
+    category: 'photo',
+    tags: ['indie', 'кино', 'ностальгия', 'фотосессия'],
+  },
+
   // Hyper-realism
   {
     id: 'hyper-real-selfie',
