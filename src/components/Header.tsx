@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Clock, Settings, Zap } from 'lucide-react';
+import { Sparkles, Clock, Settings, Zap, BookOpen } from 'lucide-react';
 
 interface Props {
   currentPage: string;
@@ -9,6 +9,7 @@ interface Props {
 export const Header: React.FC<Props> = ({ currentPage, onNavigate }) => {
   const navItems = [
     { id: 'generator', label: 'Генератор', icon: <Sparkles className="w-4 h-4" /> },
+    { id: 'catalog', label: 'Каталог', icon: <BookOpen className="w-4 h-4" /> },
     { id: 'history', label: 'История', icon: <Clock className="w-4 h-4" /> },
     { id: 'settings', label: 'Настройки', icon: <Settings className="w-4 h-4" /> },
   ];
