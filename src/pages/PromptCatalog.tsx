@@ -297,13 +297,14 @@ export const PromptCatalog: React.FC<{ onUsePrompt?: (prompt: string) => void }>
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Header */}
-      <div className="glass-card p-6">
+      <div className="studio-card p-6">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 rounded-xl bg-accent/15 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-accent/15 flex items-center justify-center"
+               style={{ boxShadow: '0 0 16px rgba(107, 163, 255, 0.15)' }}>
             <BookOpen className="w-5 h-5 text-accent-light" />
           </div>
           <div>
-            <h2 className="text-lg font-bold text-white">Каталог промптов</h2>
+            <h2 className="text-lg font-bold text-white text-glow">Каталог промптов</h2>
             <p className="text-xs text-gray-500">
               {PROMPTS.length} готовых шаблонов · Вдохновлено{' '}
               <a
@@ -326,7 +327,7 @@ export const PromptCatalog: React.FC<{ onUsePrompt?: (prompt: string) => void }>
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Поиск по промптам..."
-            className="input-field pl-10 text-sm"
+            className="input-field input-eclipse pl-10 text-sm"
           />
         </div>
       </div>
@@ -352,7 +353,7 @@ export const PromptCatalog: React.FC<{ onUsePrompt?: (prompt: string) => void }>
       {/* Prompt grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filtered.map((p) => (
-          <div key={p.id} className="glass-card p-4 space-y-3 group hover:ring-1 hover:ring-accent/20 transition-all">
+          <div key={p.id} className="studio-card p-4 space-y-3 group transition-all">
             <div className="flex items-start justify-between">
               <h3 className="text-sm font-semibold text-white">{p.title}</h3>
               <div className="flex gap-1.5 shrink-0 ml-2">

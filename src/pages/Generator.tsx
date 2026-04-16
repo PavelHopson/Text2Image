@@ -68,16 +68,16 @@ export const Generator: React.FC = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-fade-in">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-fade-in studio-grid min-h-[calc(100vh-5rem)]">
       {/* LEFT: Controls */}
       <div className="space-y-6">
         {/* Prompt */}
-        <div className="glass-card p-6 space-y-4">
+        <div className="studio-card p-6 space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-bold text-white flex items-center gap-2">
+            <h2 className="text-lg font-bold text-white flex items-center gap-2 text-glow">
               <Wand2 className="w-5 h-5 text-accent-light" /> Промпт
             </h2>
-            <span className="text-[10px] font-mono text-gray-500 bg-white/[0.04] px-2 py-1 rounded">
+            <span className="text-[10px] font-mono text-gray-500 bg-white/[0.04] px-2 py-1 rounded tracking-[0.1em] uppercase">
               {providerName} / {config.model}
             </span>
           </div>
@@ -87,7 +87,7 @@ export const Generator: React.FC = () => {
             onChange={(e) => setPrompt(e.target.value)}
             placeholder="Опишите изображение... Например: Кот-астронавт на Марсе, смотрит на закат"
             rows={4}
-            className="input-field resize-none text-sm"
+            className="input-field input-eclipse resize-none text-sm"
           />
 
           {!hasKey && (
@@ -99,14 +99,16 @@ export const Generator: React.FC = () => {
 
           {/* Style Picker */}
           <div>
-            <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 block">Стиль</label>
+            <label className="text-[10px] font-semibold text-gray-500 uppercase tracking-[0.2em] mb-2 block">
+              Стиль генерации
+            </label>
             <StylePicker selected={style} onSelect={setStyle} />
           </div>
 
           {/* Advanced */}
           <button
             onClick={() => setShowAdvanced(!showAdvanced)}
-            className="flex items-center gap-1 text-xs text-gray-500 hover:text-white transition-colors"
+            className="flex items-center gap-1 text-xs text-gray-500 hover:text-white transition-colors tracking-[0.1em] uppercase"
           >
             {showAdvanced ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
             Дополнительно
@@ -115,7 +117,9 @@ export const Generator: React.FC = () => {
           {showAdvanced && (
             <div className="space-y-3 animate-fade-in">
               <div>
-                <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 block">Соотношение сторон</label>
+                <label className="text-[10px] font-semibold text-gray-500 uppercase tracking-[0.2em] mb-2 block">
+                  Соотношение сторон
+                </label>
                 <AspectRatioPicker selected={ratio} onSelect={setRatio} />
               </div>
             </div>
@@ -125,11 +129,11 @@ export const Generator: React.FC = () => {
           <button
             onClick={handleGenerate}
             disabled={!prompt.trim() || state === 'enhancing' || state === 'generating'}
-            className="btn-primary w-full flex items-center justify-center gap-2 text-base disabled:opacity-40 disabled:cursor-not-allowed"
+            className="btn-generate w-full flex items-center justify-center gap-2"
           >
             {state === 'enhancing' || state === 'generating' ? (
               <>
-                <Loader2 className="w-5 h-5 animate-spin" />
+                <Loader2 className="w-5 h-5 animate-spin spinner-glow" />
                 {state === 'enhancing' ? 'Улучшаю промпт...' : 'Генерирую изображение...'}
               </>
             ) : (
@@ -142,9 +146,9 @@ export const Generator: React.FC = () => {
 
         {/* Enhanced Prompt */}
         {enhancedPrompt && (
-          <div className="glass-card p-4 animate-slide-up">
+          <div className="studio-card p-4 animate-slide-up">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-semibold text-gray-400 uppercase">Улучшенный промпт</span>
+              <span className="text-[10px] font-semibold text-gray-500 uppercase tracking-[0.2em]">Улучшенный промпт</span>
               <button
                 onClick={() => navigator.clipboard.writeText(enhancedPrompt)}
                 className="text-gray-500 hover:text-white transition-colors"
@@ -159,25 +163,28 @@ export const Generator: React.FC = () => {
 
       {/* RIGHT: Result */}
       <div className="space-y-4">
-        <div className="glass-card overflow-hidden aspect-square flex items-center justify-center relative">
+        <div className={`studio-card overflow-hidden aspect-square flex items-center justify-center relative ${imageUrl && state === 'complete' ? 'image-success' : ''}`}>
           {state === 'idle' && !imageUrl && (
             <div className="text-center p-8">
-              <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-white/[0.03] flex items-center justify-center">
+              <div
+                className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-white/[0.03] flex items-center justify-center"
+                style={{ boxShadow: '0 0 40px rgba(107, 163, 255, 0.04)' }}
+              >
                 <Sparkles className="w-10 h-10 text-gray-700" />
               </div>
-              <p className="text-gray-500 text-sm">Введите промпт и нажмите "Сгенерировать"</p>
+              <p className="text-gray-500 text-sm tracking-wide">Введите промпт и нажмите "Сгенерировать"</p>
             </div>
           )}
 
           {(state === 'enhancing' || state === 'generating') && (
             <div className="text-center p-8">
-              <Loader2 className="w-12 h-12 text-accent animate-spin mx-auto mb-4" />
+              <Loader2 className="w-12 h-12 text-accent animate-spin mx-auto mb-4 spinner-glow" />
               <p className="text-gray-400 text-sm">
                 {state === 'enhancing' ? 'AI улучшает ваш промпт...' : 'Генерация изображения...'}
               </p>
               <div className="mt-4 w-48 h-1 bg-white/[0.06] rounded-full mx-auto overflow-hidden">
-                <div className="h-full bg-gradient-to-r from-accent to-neon-pink rounded-full animate-shimmer"
-                     style={{ backgroundSize: '200% 100%', width: '100%' }} />
+                <div className="h-full bg-gradient-to-r from-accent to-accent-dark rounded-full animate-shimmer"
+                     style={{ backgroundSize: '200% 100%', width: '100%', boxShadow: '0 0 8px rgba(107, 163, 255, 0.4)' }} />
               </div>
             </div>
           )}

@@ -25,14 +25,32 @@ export const StylePicker: React.FC<Props> = ({ selected, onSelect }) => (
       <button
         key={s.id}
         onClick={() => onSelect(s.id)}
-        className={`flex flex-col items-center gap-1 py-3 px-1 rounded-xl text-xs font-medium transition-all ${
+        className={`relative flex flex-col items-center gap-1 py-3 px-1 rounded-xl text-xs font-medium transition-all duration-300 ${
           selected === s.id
-            ? 'bg-accent/15 text-accent-light ring-1 ring-accent/40 scale-105'
+            ? 'text-accent-light scale-105'
             : 'bg-white/[0.03] text-gray-400 hover:bg-white/[0.06] hover:text-white'
         }`}
+        style={selected === s.id ? {
+          background: 'rgba(107, 163, 255, 0.08)',
+          border: '1px solid transparent',
+          backgroundImage: 'linear-gradient(rgba(107, 163, 255, 0.08), rgba(107, 163, 255, 0.08)), linear-gradient(135deg, rgba(107, 163, 255, 0.5), rgba(245, 166, 35, 0.3))',
+          backgroundOrigin: 'border-box',
+          backgroundClip: 'padding-box, border-box',
+          boxShadow: '0 0 16px rgba(107, 163, 255, 0.15), 0 0 4px rgba(107, 163, 255, 0.1)',
+        } : {}}
       >
         <span className="text-xl">{s.icon}</span>
         <span className="truncate w-full text-center">{s.label}</span>
+        {/* Accent dot indicator */}
+        {selected === s.id && (
+          <span
+            className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full"
+            style={{
+              background: '#6BA3FF',
+              boxShadow: '0 0 6px rgba(107, 163, 255, 0.6)',
+            }}
+          />
+        )}
       </button>
     ))}
   </div>

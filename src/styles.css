@@ -7,6 +7,18 @@ body {
   background: #05070A;
 }
 
+/* Grain texture overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: soft-light;
+}
+
 ::selection {
   background: rgba(107, 163, 255, 0.25);
 }
@@ -15,6 +27,128 @@ body {
 ::-webkit-scrollbar-track { background: #05070A; }
 ::-webkit-scrollbar-thumb { background: #1C2536; border-radius: 999px; }
 ::-webkit-scrollbar-thumb:hover { background: #6BA3FF; }
+
+/* Neon corner brackets on cards */
+.studio-card {
+  position: relative;
+  background: rgba(12, 17, 23, 0.85);
+  border: 1px solid rgba(107, 163, 255, 0.08);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.studio-card::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: -1px;
+  width: 16px; height: 16px;
+  border-top: 2px solid rgba(107, 163, 255, 0.4);
+  border-left: 2px solid rgba(107, 163, 255, 0.4);
+  border-radius: 16px 0 0 0;
+  transition: all 0.4s;
+  pointer-events: none;
+}
+.studio-card::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; right: -1px;
+  width: 16px; height: 16px;
+  border-bottom: 2px solid rgba(245, 166, 35, 0.3);
+  border-right: 2px solid rgba(245, 166, 35, 0.3);
+  border-radius: 0 0 16px 0;
+  transition: all 0.4s;
+  pointer-events: none;
+}
+.studio-card:hover {
+  border-color: rgba(107, 163, 255, 0.15);
+  box-shadow: 0 0 30px rgba(107, 163, 255, 0.06);
+}
+.studio-card:hover::before {
+  width: 24px; height: 24px;
+  border-color: rgba(107, 163, 255, 0.6);
+}
+.studio-card:hover::after {
+  width: 24px; height: 24px;
+  border-color: rgba(245, 166, 35, 0.5);
+}
+
+/* Premium generate button */
+.btn-generate {
+  background: linear-gradient(135deg, #6BA3FF 0%, #4A7FD4 100%);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 14px;
+  padding: 14px 32px;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 24px rgba(107, 163, 255, 0.2);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+.btn-generate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(107, 163, 255, 0.35);
+}
+.btn-generate:disabled {
+  opacity: 0.4;
+  transform: none;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* Grid background */
+.studio-grid {
+  background-image:
+    linear-gradient(to right, rgba(107, 163, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(107, 163, 255, 0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Text glow */
+.text-glow { text-shadow: 0 0 20px rgba(107, 163, 255, 0.4); }
+
+/* Spinner glow */
+.spinner-glow {
+  filter: drop-shadow(0 0 12px rgba(107, 163, 255, 0.5));
+}
+
+/* Gradient border for completed images */
+.image-success {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.image-success::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(135deg, rgba(107, 163, 255, 0.4), rgba(245, 166, 35, 0.3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Eclipse focus glow for inputs */
+.input-eclipse:focus {
+  border-color: rgba(107, 163, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(107, 163, 255, 0.1), 0 0 20px rgba(107, 163, 255, 0.08);
+}
+
+/* Like button warm glow */
+.like-glow {
+  box-shadow: 0 0 12px rgba(245, 166, 35, 0.4), 0 0 24px rgba(245, 166, 35, 0.15);
+}
+
+/* Header gradient line */
+.header-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(107, 163, 255, 0.3) 30%, rgba(245, 166, 35, 0.2) 70%, transparent);
+}
 
 @layer components {
   .glass-card {

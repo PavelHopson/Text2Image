@@ -48,9 +48,9 @@ export const Settings: React.FC = () => {
 
   return (
     <div className="max-w-2xl mx-auto space-y-6 animate-fade-in">
-      <div className="glass-card p-6 space-y-6">
+      <div className="studio-card p-6 space-y-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-white flex items-center gap-2">
+          <h2 className="text-lg font-bold text-white flex items-center gap-2 text-glow">
             <Zap className="w-5 h-5 text-accent-light" /> Настройки AI
           </h2>
           {saved && (
@@ -66,20 +66,25 @@ export const Settings: React.FC = () => {
 
         {/* Provider */}
         <div>
-          <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 block">Провайдер</label>
+          <label className="text-[10px] font-semibold text-gray-500 uppercase tracking-[0.2em] mb-3 block">Провайдер</label>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {(Object.keys(AI_PROVIDERS) as AIProvider[]).map((p) => (
               <button
                 key={p}
                 onClick={() => handleProviderChange(p)}
-                className={`p-4 rounded-xl text-left transition-all border ${
-                  provider === p
-                    ? 'bg-accent/10 border-accent/40 text-white'
-                    : 'bg-white/[0.02] border-white/[0.06] text-gray-400 hover:border-white/[0.12]'
-                }`}
+                className="studio-card p-4 text-left transition-all"
+                style={provider === p ? {
+                  borderColor: 'rgba(107, 163, 255, 0.4)',
+                  background: 'rgba(107, 163, 255, 0.06)',
+                  boxShadow: '0 0 20px rgba(107, 163, 255, 0.08)',
+                } : {}}
               >
-                <div className="font-semibold text-sm">{AI_PROVIDERS[p].name}</div>
-                <div className="text-[10px] text-gray-500 mt-1 font-mono">{AI_PROVIDERS[p].models.length} моделей</div>
+                <div className={`font-semibold text-sm ${provider === p ? 'text-white' : 'text-gray-400'}`}>
+                  {AI_PROVIDERS[p].name}
+                </div>
+                <div className="text-[10px] text-gray-500 mt-1 font-mono tracking-[0.05em]">
+                  {AI_PROVIDERS[p].models.length} моделей
+                </div>
               </button>
             ))}
           </div>
@@ -87,11 +92,11 @@ export const Settings: React.FC = () => {
 
         {/* Model */}
         <div>
-          <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 block">Модель</label>
+          <label className="text-[10px] font-semibold text-gray-500 uppercase tracking-[0.2em] mb-2 block">Модель</label>
           <select
             value={model}
             onChange={(e) => setModel(e.target.value)}
-            className="input-field text-sm"
+            className="input-field input-eclipse text-sm"
           >
             {AI_PROVIDERS[provider].models.map((m) => (
               <option key={m} value={m}>{m}</option>
@@ -102,20 +107,20 @@ export const Settings: React.FC = () => {
             value={model}
             onChange={(e) => setModel(e.target.value)}
             placeholder="Или введите ID модели вручную"
-            className="input-field text-xs font-mono mt-2"
+            className="input-field input-eclipse text-xs font-mono mt-2"
           />
         </div>
 
         {/* Ollama Base URL */}
         {provider === 'ollama' && (
           <div>
-            <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 block">Base URL</label>
+            <label className="text-[10px] font-semibold text-gray-500 uppercase tracking-[0.2em] mb-2 block">Base URL</label>
             <input
               type="text"
               value={ollamaBaseUrl}
               onChange={(e) => setOllamaBaseUrl(e.target.value)}
               placeholder="http://localhost:11434"
-              className="input-field text-sm font-mono"
+              className="input-field input-eclipse text-sm font-mono"
             />
             <p className="text-[10px] text-gray-500 mt-1">Ollama работает локально, API ключ не нужен. Промпты улучшаются без цензуры.</p>
           </div>
@@ -125,7 +130,7 @@ export const Settings: React.FC = () => {
         {provider !== 'ollama' && (
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider">API Ключ</label>
+            <label className="text-[10px] font-semibold text-gray-500 uppercase tracking-[0.2em]">API Ключ</label>
             <a
               href={providerLinks[provider]}
               target="_blank"
@@ -141,7 +146,7 @@ export const Settings: React.FC = () => {
               value={apiKey}
               onChange={(e) => setApiKey(e.target.value)}
               placeholder={AI_PROVIDERS[provider].placeholder}
-              className="input-field text-sm font-mono pr-10"
+              className="input-field input-eclipse text-sm font-mono pr-10"
             />
             <button
               onClick={() => setShowKey(!showKey)}
@@ -154,13 +159,13 @@ export const Settings: React.FC = () => {
         )}
 
         {/* Save */}
-        <button onClick={handleSave} className="btn-primary w-full flex items-center justify-center gap-2">
+        <button onClick={handleSave} className="btn-generate w-full flex items-center justify-center gap-2">
           <Save className="w-4 h-4" /> Сохранить настройки
         </button>
       </div>
 
       {/* Info */}
-      <div className="glass-card p-4">
+      <div className="studio-card p-4">
         <h3 className="text-sm font-semibold text-gray-300 mb-2">Как это работает?</h3>
         <ol className="text-xs text-gray-400 space-y-1.5 list-decimal list-inside">
           <li>Вы вводите промпт на любом языке</li>
