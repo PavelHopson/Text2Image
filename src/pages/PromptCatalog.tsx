@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { BookOpen, Copy, Check, Search, Sparkles } from 'lucide-react';
+import { Copy, Check } from 'lucide-react';
+import { EclipseBookOpen, EclipseSearch, EclipseSparkles } from '../components/icons/EclipseIcons';
 
 interface PromptTemplate {
   id: string;
@@ -301,7 +302,7 @@ export const PromptCatalog: React.FC<{ onUsePrompt?: (prompt: string) => void }>
         <div className="flex items-center gap-3 mb-4">
           <div className="w-10 h-10 rounded-xl bg-accent/15 flex items-center justify-center"
                style={{ boxShadow: '0 0 16px rgba(107, 163, 255, 0.15)' }}>
-            <BookOpen className="w-5 h-5 text-accent-light" />
+            <EclipseBookOpen className="w-5 h-5 text-accent-light" />
           </div>
           <div>
             <h2 className="text-lg font-bold text-white text-glow">Каталог промптов</h2>
@@ -321,7 +322,7 @@ export const PromptCatalog: React.FC<{ onUsePrompt?: (prompt: string) => void }>
 
         {/* Search */}
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+          <EclipseSearch className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
           <input
             type="text"
             value={search}
@@ -363,7 +364,7 @@ export const PromptCatalog: React.FC<{ onUsePrompt?: (prompt: string) => void }>
                     className="p-1.5 rounded-lg bg-accent/10 text-accent-light hover:bg-accent/20 transition-colors"
                     title="Использовать в генераторе"
                   >
-                    <Sparkles className="w-3.5 h-3.5" />
+                    <EclipseSparkles className="w-3.5 h-3.5" />
                   </button>
                 )}
                 <button

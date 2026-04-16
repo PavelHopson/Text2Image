@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Heart, Download, Trash2, Clock, X } from 'lucide-react';
+import { Trash2, X } from 'lucide-react';
+import { EclipseHeart, EclipseDownload, EclipseClock } from '../components/icons/EclipseIcons';
 import { getHistory, toggleLike, deleteFromHistory, clearHistory } from '../services/historyService';
 import { GeneratedImage, AI_PROVIDERS } from '../types';
 
@@ -49,7 +50,7 @@ export const History: React.FC = () => {
   if (items.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-center animate-fade-in">
-        <Clock className="w-16 h-16 text-gray-700 mb-4" />
+        <EclipseClock className="w-16 h-16 text-gray-700 mb-4" />
         <h2 className="text-xl font-bold text-gray-400 mb-2 text-glow">История пуста</h2>
         <p className="text-gray-500 text-sm">Сгенерируйте первое изображение — оно появится здесь.</p>
       </div>
@@ -93,7 +94,7 @@ export const History: React.FC = () => {
             onClick={() => setFilter('liked')}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium tracking-[0.1em] uppercase transition-all flex items-center gap-1 ${filter === 'liked' ? 'bg-accent/15 text-accent-light' : 'text-gray-400 hover:text-white'}`}
           >
-            <Heart className="w-3 h-3" /> Избранное
+            <EclipseHeart className="w-3 h-3" /> Избранное
           </button>
         </div>
         <button onClick={handleClear} className="text-xs text-gray-500 hover:text-red-400 transition-colors tracking-[0.1em] uppercase">
@@ -126,10 +127,10 @@ export const History: React.FC = () => {
                     onClick={(e) => { e.stopPropagation(); handleLike(img.id); }}
                     className={`p-1.5 rounded-lg transition-all ${img.liked ? 'text-orange-400 like-glow' : 'text-gray-400 hover:text-orange-400'}`}
                   >
-                    <Heart className={`w-3.5 h-3.5 ${img.liked ? 'fill-current' : ''}`} />
+                    <EclipseHeart className={`w-3.5 h-3.5 ${img.liked ? 'fill-current' : ''}`} />
                   </button>
                   <button onClick={(e) => { e.stopPropagation(); handleDownload(img); }} className="p-1.5 rounded-lg text-gray-400 hover:text-white transition-colors">
-                    <Download className="w-3.5 h-3.5" />
+                    <EclipseDownload className="w-3.5 h-3.5" />
                   </button>
                   <button onClick={(e) => { e.stopPropagation(); handleDelete(img.id); }} className="p-1.5 rounded-lg text-gray-400 hover:text-red-400 transition-colors">
                     <Trash2 className="w-3.5 h-3.5" />

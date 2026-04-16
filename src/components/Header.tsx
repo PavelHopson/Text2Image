@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Clock, Settings, Zap, BookOpen } from 'lucide-react';
+import { EclipseSparkles, EclipseBookOpen, EclipseClock, EclipseSettings, EclipseZap } from './icons/EclipseIcons';
 
 interface Props {
   currentPage: string;
@@ -8,10 +8,10 @@ interface Props {
 
 export const Header: React.FC<Props> = ({ currentPage, onNavigate }) => {
   const navItems = [
-    { id: 'generator', label: 'Генератор', icon: <Sparkles className="w-4 h-4" /> },
-    { id: 'catalog', label: 'Каталог', icon: <BookOpen className="w-4 h-4" /> },
-    { id: 'history', label: 'История', icon: <Clock className="w-4 h-4" /> },
-    { id: 'settings', label: 'Настройки', icon: <Settings className="w-4 h-4" /> },
+    { id: 'generator', label: 'Генератор', icon: <EclipseSparkles className="w-4 h-4" /> },
+    { id: 'catalog', label: 'Каталог', icon: <EclipseBookOpen className="w-4 h-4" /> },
+    { id: 'history', label: 'История', icon: <EclipseClock className="w-4 h-4" /> },
+    { id: 'settings', label: 'Настройки', icon: <EclipseSettings className="w-4 h-4" /> },
   ];
 
   return (
@@ -30,7 +30,7 @@ export const Header: React.FC<Props> = ({ currentPage, onNavigate }) => {
               className="w-9 h-9 rounded-xl bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center"
               style={{ boxShadow: '0 0 20px rgba(107, 163, 255, 0.35), 0 0 40px rgba(107, 163, 255, 0.1)' }}
             >
-              <Zap className="w-5 h-5 text-white" />
+              <EclipseZap className="w-5 h-5 text-white" />
             </div>
             <div>
               <h1 className="text-lg font-bold text-white leading-none text-glow">Text2Image</h1>

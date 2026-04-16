@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Sparkles, Download, Loader2, AlertCircle, Wand2, Copy, ChevronDown, ChevronUp } from 'lucide-react';
+import { Download, Loader2, AlertCircle, Copy, ChevronDown, ChevronUp } from 'lucide-react';
+import { EclipseWand, EclipseSparkles } from '../components/icons/EclipseIcons';
 import { StylePicker, getStylePrompt } from '../components/StylePicker';
 import { AspectRatioPicker } from '../components/AspectRatioPicker';
 import { enhancePrompt, generateImage, getAIConfig } from '../services/aiService';
@@ -75,7 +76,7 @@ export const Generator: React.FC = () => {
         <div className="studio-card p-6 space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-bold text-white flex items-center gap-2 text-glow">
-              <Wand2 className="w-5 h-5 text-accent-light" /> Промпт
+              <EclipseWand className="w-5 h-5 text-accent-light" /> Промпт
             </h2>
             <span className="text-[10px] font-mono text-gray-500 bg-white/[0.04] px-2 py-1 rounded tracking-[0.1em] uppercase">
               {providerName} / {config.model}
@@ -138,7 +139,7 @@ export const Generator: React.FC = () => {
               </>
             ) : (
               <>
-                <Sparkles className="w-5 h-5" /> Сгенерировать
+                <EclipseSparkles className="w-5 h-5" /> Сгенерировать
               </>
             )}
           </button>
@@ -170,7 +171,7 @@ export const Generator: React.FC = () => {
                 className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-white/[0.03] flex items-center justify-center"
                 style={{ boxShadow: '0 0 40px rgba(107, 163, 255, 0.04)' }}
               >
-                <Sparkles className="w-10 h-10 text-gray-700" />
+                <EclipseSparkles className="w-10 h-10 text-gray-700" />
               </div>
               <p className="text-gray-500 text-sm tracking-wide">Введите промпт и нажмите "Сгенерировать"</p>
             </div>
