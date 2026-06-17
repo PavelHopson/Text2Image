@@ -25,7 +25,7 @@ export const StylePicker: React.FC<Props> = ({ selected, onSelect }) => (
       <button
         key={s.id}
         onClick={() => onSelect(s.id)}
-        className={`relative flex flex-col items-center gap-1 py-3 px-1 rounded-xl text-xs font-medium transition-all duration-300 ${
+        className={`relative flex flex-col items-center gap-1 py-3 px-1 rounded-xl text-xs font-medium transition-[transform,color,background-color,box-shadow] duration-300 ease-spring ${
           selected === s.id
             ? 'text-accent-light scale-105'
             : 'bg-white/[0.03] text-gray-400 hover:bg-white/[0.06] hover:text-white'

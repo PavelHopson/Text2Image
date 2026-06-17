@@ -339,7 +339,7 @@ export const PromptCatalog: React.FC<{ onUsePrompt?: (prompt: string) => void }>
           <button
             key={cat.id}
             onClick={() => setActiveCategory(cat.id)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors duration-200 ease-soft ${
               activeCategory === cat.id
                 ? 'bg-accent/15 text-accent-light ring-1 ring-accent/30'
                 : 'bg-white/[0.04] text-gray-400 hover:text-white hover:bg-white/[0.08]'
@@ -354,7 +354,7 @@ export const PromptCatalog: React.FC<{ onUsePrompt?: (prompt: string) => void }>
       {/* Prompt grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filtered.map((p) => (
-          <div key={p.id} className="studio-card p-4 space-y-3 group transition-all">
+          <div key={p.id} className="studio-card p-4 space-y-3 group">
             <div className="flex items-start justify-between">
               <h3 className="text-sm font-semibold text-white">{p.title}</h3>
               <div className="flex gap-1.5 shrink-0 ml-2">

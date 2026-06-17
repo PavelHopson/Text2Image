@@ -43,7 +43,7 @@ export const Header: React.FC<Props> = ({ currentPage, onNavigate }) => {
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className={`relative flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium tracking-[0.15em] uppercase transition-all ${
+                className={`relative flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium tracking-[0.15em] uppercase transition-colors duration-200 ease-soft ${
                   currentPage === item.id
                     ? 'text-accent-light'
                     : 'text-gray-400 hover:text-white hover:bg-white/[0.04]'

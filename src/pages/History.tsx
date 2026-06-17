@@ -86,13 +86,13 @@ export const History: React.FC = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setFilter('all')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium tracking-[0.1em] uppercase transition-all ${filter === 'all' ? 'bg-accent/15 text-accent-light' : 'text-gray-400 hover:text-white'}`}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium tracking-[0.1em] uppercase transition-colors duration-200 ease-soft ${filter === 'all' ? 'bg-accent/15 text-accent-light' : 'text-gray-400 hover:text-white'}`}
           >
             Все ({items.length})
           </button>
           <button
             onClick={() => setFilter('liked')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium tracking-[0.1em] uppercase transition-all flex items-center gap-1 ${filter === 'liked' ? 'bg-accent/15 text-accent-light' : 'text-gray-400 hover:text-white'}`}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium tracking-[0.1em] uppercase transition-colors duration-200 ease-soft flex items-center gap-1 ${filter === 'liked' ? 'bg-accent/15 text-accent-light' : 'text-gray-400 hover:text-white'}`}
           >
             <EclipseHeart className="w-3 h-3" /> Избранное
           </button>
@@ -125,7 +125,7 @@ export const History: React.FC = () => {
                 <div className="flex items-center gap-1">
                   <button
                     onClick={(e) => { e.stopPropagation(); handleLike(img.id); }}
-                    className={`p-1.5 rounded-lg transition-all ${img.liked ? 'text-orange-400 like-glow' : 'text-gray-400 hover:text-orange-400'}`}
+                    className={`p-1.5 rounded-lg transition-colors duration-200 ease-soft ${img.liked ? 'text-orange-400 like-glow' : 'text-gray-400 hover:text-orange-400'}`}
                   >
                     <EclipseHeart className={`w-3.5 h-3.5 ${img.liked ? 'fill-current' : ''}`} />
                   </button>

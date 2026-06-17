@@ -72,7 +72,7 @@ export const Settings: React.FC = () => {
               <button
                 key={p}
                 onClick={() => handleProviderChange(p)}
-                className="studio-card p-4 text-left transition-all"
+                className="studio-card p-4 text-left transition-colors duration-200 ease-soft"
                 style={provider === p ? {
                   borderColor: 'rgba(107, 163, 255, 0.4)',
                   background: 'rgba(107, 163, 255, 0.06)',

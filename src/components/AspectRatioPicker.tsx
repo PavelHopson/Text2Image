@@ -20,7 +20,7 @@ export const AspectRatioPicker: React.FC<Props> = ({ selected, onSelect }) => (
       <button
         key={r.id}
         onClick={() => onSelect(r.id)}
-        className={`flex flex-col items-center gap-1.5 p-3 rounded-xl transition-all ${
+        className={`flex flex-col items-center gap-1.5 p-3 rounded-xl transition-colors duration-200 ease-soft ${
           selected === r.id
             ? 'bg-accent/15 text-accent-light ring-1 ring-accent/40'
             : 'bg-white/[0.03] text-gray-500 hover:bg-white/[0.06] hover:text-white'

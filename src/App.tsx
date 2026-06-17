@@ -14,16 +14,18 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-surface-500 studio-grid">
       <Header currentPage={page} onNavigate={setPage} />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
-        {page === 'generator' && <Generator />}
-        {page === 'history' && <History />}
-        {page === 'catalog' && (
-          <PromptCatalog onUsePrompt={(prompt) => {
-            // Navigate to generator — the prompt will be in clipboard
-            navigator.clipboard.writeText(prompt);
-            setPage('generator');
-          }} />
-        )}
-        {page === 'settings' && <Settings />}
+        <div key={page} className="view-enter">
+          {page === 'generator' && <Generator />}
+          {page === 'history' && <History />}
+          {page === 'catalog' && (
+            <PromptCatalog onUsePrompt={(prompt) => {
+              // Navigate to generator — the prompt will be in clipboard
+              navigator.clipboard.writeText(prompt);
+              setPage('generator');
+            }} />
+          )}
+          {page === 'settings' && <Settings />}
+        </div>
       </main>
     </div>
   );

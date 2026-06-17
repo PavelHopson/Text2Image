@@ -30,10 +30,14 @@ export default {
           green: '#4AE6A0',
         },
       },
+      transitionTimingFunction: {
+        soft: 'cubic-bezier(.22, .61, .36, 1)',
+        spring: 'cubic-bezier(.34, 1.4, .64, 1)',
+      },
       animation: {
         'shimmer': 'shimmer 2s linear infinite',
-        'fade-in': 'fadeIn 0.3s ease-out',
-        'slide-up': 'slideUp 0.4s ease-out',
+        'fade-in': 'fadeIn 0.3s cubic-bezier(.22, .61, .36, 1)',
+        'slide-up': 'slideUp 0.4s cubic-bezier(.22, .61, .36, 1)',
       },
       keyframes: {
         shimmer: {

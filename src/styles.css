@@ -2,6 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --ease: cubic-bezier(.22, .61, .36, 1);
+  --ease-spring: cubic-bezier(.34, 1.4, .64, 1);
+}
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Main view content entrance */
+@keyframes viewEnter {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.view-enter {
+  animation: viewEnter .4s var(--ease) both;
+}
+
 body {
   font-family: 'Inter', system-ui, sans-serif;
   background: #05070A;
@@ -35,7 +58,7 @@ body::after {
   border: 1px solid rgba(107, 163, 255, 0.08);
   border-radius: 16px;
   backdrop-filter: blur(8px);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 .studio-card::before {
   content: '';
@@ -45,7 +68,7 @@ body::after {
   border-top: 2px solid rgba(107, 163, 255, 0.4);
   border-left: 2px solid rgba(107, 163, 255, 0.4);
   border-radius: 16px 0 0 0;
-  transition: all 0.4s;
+  transition: width 0.4s var(--ease), height 0.4s var(--ease), border-color 0.4s var(--ease);
   pointer-events: none;
 }
 .studio-card::after {
@@ -56,7 +79,7 @@ body::after {
   border-bottom: 2px solid rgba(245, 166, 35, 0.3);
   border-right: 2px solid rgba(245, 166, 35, 0.3);
   border-radius: 0 0 16px 0;
-  transition: all 0.4s;
+  transition: width 0.4s var(--ease), height 0.4s var(--ease), border-color 0.4s var(--ease);
   pointer-events: none;
 }
 .studio-card:hover {
@@ -81,15 +104,19 @@ body::after {
   border-radius: 14px;
   padding: 14px 32px;
   cursor: pointer;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.24s var(--ease-spring), box-shadow 0.24s var(--ease);
   box-shadow: 0 4px 24px rgba(107, 163, 255, 0.2);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 13px;
 }
-.btn-generate:hover {
+.btn-generate:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 8px 40px rgba(107, 163, 255, 0.35);
+}
+.btn-generate:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 16px rgba(107, 163, 255, 0.25);
 }
 .btn-generate:disabled {
   opacity: 0.4;
@@ -155,12 +182,12 @@ body::after {
     @apply bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-2xl;
   }
   .btn-primary {
-    @apply bg-accent hover:bg-accent-dark text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-lg shadow-accent/20 hover:shadow-accent/40 active:scale-[0.98];
+    @apply bg-accent hover:bg-accent-dark text-white font-semibold py-3 px-6 rounded-xl transition-[color,background-color,box-shadow,transform] duration-200 ease-soft shadow-lg shadow-accent/20 hover:shadow-accent/40 active:scale-[0.98];
   }
   .btn-secondary {
-    @apply bg-white/[0.06] hover:bg-white/[0.1] text-gray-300 font-medium py-3 px-6 rounded-xl transition-all border border-white/[0.06];
+    @apply bg-white/[0.06] hover:bg-white/[0.1] text-gray-300 font-medium py-3 px-6 rounded-xl transition-colors duration-200 ease-soft border border-white/[0.06];
   }
   .input-field {
-    @apply w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-accent/50 focus:ring-1 focus:ring-accent/30 focus:outline-none transition-all;
+    @apply w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:border-accent/50 focus:ring-1 focus:ring-accent/30 focus:outline-none transition-[color,background-color,border-color,box-shadow] duration-200 ease-soft;
   }
 }
