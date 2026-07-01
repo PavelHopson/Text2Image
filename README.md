@@ -19,6 +19,16 @@ Text2Image Studio — AI-студия для генерации изображе
 - История генераций с локальным сохранением в браузере
 - Настройка AI-провайдера и модели без отдельного backend
 
+## Product radar
+
+Источник: [Eclipse Library · July 2026 project integration](https://library.eclipse-forge.ru/#guide/july-2026-project-integration).
+
+| Reference | Как использовать |
+|-----------|------------------|
+| **Google image/video low-cost tier** | Проверить как дешёвый provider для генерации изображений, карточек проектов, UI mockups и коротких visual loops. Перед внедрением: price/quality/watermark тест на фиксированном наборе промптов |
+| **Seed-Audio 1.0** | Не core-фича Text2Image, но reference для будущих animated stories / narrated image packs. Только consent-safe voice usage |
+| **Torlink** | Не интегрировать. Максимум reference для очередей загрузки открытых assets, без публичного "скачать любые файлы" сценария |
+
 ## Провайдеры
 
 - Google Gemini
