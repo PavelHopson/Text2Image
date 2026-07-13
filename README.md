@@ -26,6 +26,8 @@ Text2Image Studio — AI-студия для генерации изображе
 | Reference | Как использовать |
 |-----------|------------------|
 | **Google image/video low-cost tier** | Проверить как дешёвый provider для генерации изображений, карточек проектов, UI mockups и коротких visual loops. Перед внедрением: price/quality/watermark тест на фиксированном наборе промптов |
+| **Photo restoration prompt pack** | Добавить prompt-template для восстановления старых фото: царапины, шум, пятна, мягкий upscale и естественная колоризация |
+| **prompts.chat / Claude Prompt Library** | Источник prompt templates, но только после ручной фильтрации; не импортировать тысячи промптов без качества и категорий |
 | **Seed-Audio 1.0** | Не core-фича Text2Image, но reference для будущих animated stories / narrated image packs. Только consent-safe voice usage |
 | **Torlink** | Не интегрировать. Максимум reference для очередей загрузки открытых assets, без публичного "скачать любые файлы" сценария |
 
