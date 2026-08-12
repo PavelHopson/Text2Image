@@ -11,7 +11,7 @@ const App: React.FC = () => {
   const [page, setPage] = useState<Page>('generator');
 
   return (
-    <div className="min-h-screen bg-surface-500 studio-grid">
+    <div className="min-h-screen bg-surface-500 studio-grid forge-product-shell" data-visual-profile="product">
       <Header currentPage={page} onNavigate={setPage} />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
         <div key={page} className="view-enter">
