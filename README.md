@@ -18,6 +18,7 @@ Text2Image Studio — AI-студия для генерации изображе
 - Каталог готовых prompt templates
 - История генераций с локальным сохранением в браузере
 - Настройка AI-провайдера и модели без отдельного backend
+- Export metadata-only `eclipse.media-asset.v1` passport for local validation in Eclipse Media
 
 ## Product radar
 
@@ -52,6 +53,7 @@ src/
     Settings.tsx     провайдеры, модели, API ключи
   services/
     aiService.ts     enhancement + image generation
+    mediaAssetContract.ts versioned sidecar without binary data or URLs
     historyService.ts локальное хранение истории
   types.ts           модели данных и провайдеры
 ```

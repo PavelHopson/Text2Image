@@ -5,7 +5,8 @@ import { StylePicker, getStylePrompt } from '../components/StylePicker';
 import { AspectRatioPicker } from '../components/AspectRatioPicker';
 import { enhancePrompt, generateImage, getAIConfig } from '../services/aiService';
 import { addToHistory } from '../services/historyService';
-import { ImageStyle, AspectRatio, GenerationState, AI_PROVIDERS } from '../types';
+import { buildMediaAssetSidecar, downloadMediaAssetSidecar } from '../services/mediaAssetContract';
+import { ImageStyle, AspectRatio, GenerationState, AI_PROVIDERS, GeneratedImage } from '../types';
 
 export const Generator: React.FC = () => {
   const [prompt, setPrompt] = useState('');
@@ -14,6 +15,7 @@ export const Generator: React.FC = () => {
   const [state, setState] = useState<GenerationState>('idle');
   const [enhancedPrompt, setEnhancedPrompt] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const [assetId, setAssetId] = useState('');
   const [error, setError] = useState('');
   const [showAdvanced, setShowAdvanced] = useState(false);
 
@@ -38,12 +40,14 @@ export const Generator: React.FC = () => {
       // Step 2: Generate image
       setState('generating');
       const url = await generateImage(`${enhanced}, ${stylePrompt}`, ratio);
+      const nextAssetId = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+      setAssetId(nextAssetId);
       setImageUrl(url);
       setState('complete');
 
       // Save to history
       addToHistory({
-        id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+        id: nextAssetId,
         prompt,
         enhancedPrompt: enhanced,
         style,
@@ -57,16 +61,35 @@ export const Generator: React.FC = () => {
     } catch (err: any) {
       setState('error');
       setError(err.message || 'Ошибка генерации');
+
     }
   };
+  const currentAsset = (): GeneratedImage => ({
+    id: assetId || 'generated',
+    prompt,
+    enhancedPrompt,
+    style,
+    aspectRatio: ratio,
+    provider: config.provider,
+    model: config.model,
+    imageUrl,
+    timestamp: Date.now(),
+    liked: false,
+  });
+
 
   const handleDownload = () => {
     if (!imageUrl) return;
     const a = document.createElement('a');
     a.href = imageUrl;
-    a.download = `text2image-${Date.now()}.png`;
+    a.download = buildMediaAssetSidecar(currentAsset()).asset.fileName;
     a.click();
   };
+  const handleSidecarDownload = () => {
+    if (!imageUrl) return;
+    downloadMediaAssetSidecar(currentAsset());
+  };
+
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 animate-fade-in studio-grid min-h-[calc(100vh-5rem)]">
@@ -208,6 +231,11 @@ export const Generator: React.FC = () => {
         {imageUrl && state === 'complete' && (
           <button onClick={handleDownload} className="btn-secondary w-full flex items-center justify-center gap-2">
             <Download className="w-4 h-4" /> Скачать изображение
+          </button>
+        )}
+        {imageUrl && state === 'complete' && (
+          <button onClick={handleSidecarDownload} className="btn-secondary w-full flex items-center justify-center gap-2">
+            <Download className="w-4 h-4" /> Media Asset JSON
           </button>
         )}
       </div>
