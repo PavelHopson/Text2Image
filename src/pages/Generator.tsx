@@ -6,6 +6,7 @@ import { AspectRatioPicker } from '../components/AspectRatioPicker';
 import { enhancePrompt, generateImage, getAIConfig } from '../services/aiService';
 import { addToHistory } from '../services/historyService';
 import { buildMediaAssetSidecar, downloadMediaAssetSidecar } from '../services/mediaAssetContract';
+import { buildReferenceBoard, type ReferenceKind, type RightsStatus } from '../services/referenceBoard';
 import { ImageStyle, AspectRatio, GenerationState, AI_PROVIDERS, GeneratedImage } from '../types';
 
 export const Generator: React.FC = () => {
@@ -18,6 +19,10 @@ export const Generator: React.FC = () => {
   const [assetId, setAssetId] = useState('');
   const [error, setError] = useState('');
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const [referenceKind, setReferenceKind] = useState<ReferenceKind>('shot');
+  const [rightsStatus, setRightsStatus] = useState<RightsStatus>('unconfirmed');
+  const [consentConfirmed, setConsentConfirmed] = useState(false);
+  const [referenceFeedback, setReferenceFeedback] = useState('');
 
   const config = getAIConfig();
   const providerName = AI_PROVIDERS[config.provider]?.name || config.provider;
@@ -88,6 +93,20 @@ export const Generator: React.FC = () => {
   const handleSidecarDownload = () => {
     if (!imageUrl) return;
     downloadMediaAssetSidecar(currentAsset());
+  };
+  const handleReferenceBoardDownload = () => {
+    try {
+      const board = buildReferenceBoard(currentAsset(), referenceKind, rightsStatus, consentConfirmed);
+      const url = URL.createObjectURL(new Blob([JSON.stringify(board, null, 2)], { type: 'application/json' }));
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = 'eclipse-reference-board.json';
+      anchor.click();
+      URL.revokeObjectURL(url);
+      setReferenceFeedback('Reference Board готов. Передайте JSON в Shotforge вместе с локальным изображением.');
+    } catch (caught) {
+      setReferenceFeedback(caught instanceof Error ? caught.message : 'Reference Board export failed.');
+    }
   };
 
 
@@ -237,6 +256,26 @@ export const Generator: React.FC = () => {
           <button onClick={handleSidecarDownload} className="btn-secondary w-full flex items-center justify-center gap-2">
             <Download className="w-4 h-4" /> Media Asset JSON
           </button>
+        )}
+        {imageUrl && state === 'complete' && (
+          <section className="studio-card p-4 space-y-3" aria-labelledby="reference-board-title">
+            <div><h3 id="reference-board-title" className="font-semibold text-white">Reference Board для Shotforge</h3><p className="mt-1 text-xs text-gray-400">Экспортируется только provenance и имя локального файла — без изображения, URL и API-ключей.</p></div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <label className="text-xs text-gray-300">Тип референса
+                <select value={referenceKind} onChange={(event) => { setReferenceKind(event.target.value as ReferenceKind); setConsentConfirmed(false); setReferenceFeedback(''); }} className="input-field mt-1 w-full">
+                  {['shot', 'object', 'location', 'pose', 'character', 'creature'].map((kind) => <option key={kind} value={kind}>{kind}</option>)}
+                </select>
+              </label>
+              <label className="text-xs text-gray-300">Права
+                <select value={rightsStatus} onChange={(event) => { setRightsStatus(event.target.value as RightsStatus); setReferenceFeedback(''); }} className="input-field mt-1 w-full">
+                  <option value="unconfirmed">Не подтверждены</option><option value="owned">Мой материал</option><option value="licensed">Есть лицензия</option><option value="public-domain">Public domain</option><option value="consented">Есть согласие</option>
+                </select>
+              </label>
+            </div>
+            {(referenceKind === 'pose' || referenceKind === 'character') && <label className="flex gap-2 text-xs text-gray-300"><input type="checkbox" checked={consentConfirmed} onChange={(event) => { setConsentConfirmed(event.target.checked); setReferenceFeedback(''); }} /> Есть явное согласие на использование внешности</label>}
+            <button type="button" onClick={handleReferenceBoardDownload} disabled={rightsStatus === 'unconfirmed' || ((referenceKind === 'pose' || referenceKind === 'character') && !consentConfirmed)} className="btn-secondary w-full disabled:opacity-40 disabled:cursor-not-allowed"><Download className="w-4 h-4" /> Скачать Reference Board JSON</button>
+            <p className="text-xs text-gray-400" aria-live="polite">{referenceFeedback || (rightsStatus === 'unconfirmed' ? 'Сначала подтвердите права на материал.' : 'Готово к локальному экспорту.')}</p>
+          </section>
         )}
       </div>
     </div>
