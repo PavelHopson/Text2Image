@@ -93,6 +93,6 @@ npm run build
 [text2image-studio.pages.dev](https://text2image-studio.pages.dev)
 ## Eclipse Forge visual contract
 
-Text2Image uses the local `eclipse-forge.visual-system.v1` snapshot in the `product` profile: self-hosted Outfit/Inter typography, signal-blue actions, warm-gold accents, grid/grain depth and reduced-motion-safe transitions. The token/font snapshot is served by this application and does not depend on the Landing at runtime.
+Text2Image uses the local `eclipse-forge.visual-system.v1` snapshot in the `product` profile: self-hosted Outfit/Inter/JetBrains Mono typography, signal-blue actions, warm-gold accents, grid/grain depth and reduced-motion-safe transitions. The token/font snapshot is served by this application and does not depend on the Landing or Google Fonts at runtime. Font provenance, hashes and OFL notices are stored in `public/fonts`.
 
 Visual pilot verified on 2026-08-12 with TypeScript and production build. Compatible lockfile remediation clears the production dependency audit.

@@ -18,3 +18,6 @@
 - 2026-08-20: completed real Edge/Playwright acceptance at 1440x900 and 390x844. Generation → rights →
   likeness consent → export gating passes with visible keyboard focus, reduced motion, no horizontal
   overflow and no console, page or request errors in the isolated local test flow.
+- 2026-08-20: removed the remaining Google Fonts runtime request. Inter, Outfit and JetBrains Mono are
+  now served as integrity-pinned local WOFF2 subsets with `font-display: swap`, unchanged family/weight
+  contracts, fallback stacks and bundled SIL OFL notices.
