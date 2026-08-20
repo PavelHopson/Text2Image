@@ -15,3 +15,6 @@
 
 - 2026-08-20: added the local-only Reference Board handoff to Shotforge with visible rights, consent,
   provenance and disabled/error/success states. No binary image, remote URL or provider secret is exported.
+- 2026-08-20: completed real Edge/Playwright acceptance at 1440x900 and 390x844. Generation → rights →
+  likeness consent → export gating passes with visible keyboard focus, reduced motion, no horizontal
+  overflow and no console, page or request errors in the isolated local test flow.

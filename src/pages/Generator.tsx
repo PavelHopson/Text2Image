@@ -273,7 +273,7 @@ export const Generator: React.FC = () => {
               </label>
             </div>
             {(referenceKind === 'pose' || referenceKind === 'character') && <label className="flex gap-2 text-xs text-gray-300"><input type="checkbox" checked={consentConfirmed} onChange={(event) => { setConsentConfirmed(event.target.checked); setReferenceFeedback(''); }} /> Есть явное согласие на использование внешности</label>}
-            <button type="button" onClick={handleReferenceBoardDownload} disabled={rightsStatus === 'unconfirmed' || ((referenceKind === 'pose' || referenceKind === 'character') && !consentConfirmed)} className="btn-secondary w-full disabled:opacity-40 disabled:cursor-not-allowed"><Download className="w-4 h-4" /> Скачать Reference Board JSON</button>
+            <button type="button" onClick={handleReferenceBoardDownload} disabled={rightsStatus === 'unconfirmed' || ((referenceKind === 'pose' || referenceKind === 'character') && !consentConfirmed)} className="btn-secondary w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 disabled:opacity-40 disabled:cursor-not-allowed"><Download className="w-4 h-4" /> Скачать Reference Board JSON</button>
             <p className="text-xs text-gray-400" aria-live="polite">{referenceFeedback || (rightsStatus === 'unconfirmed' ? 'Сначала подтвердите права на материал.' : 'Готово к локальному экспорту.')}</p>
           </section>
         )}
