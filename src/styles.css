@@ -272,3 +272,19 @@ body::after {
 .forge-product-shell h2,
 .forge-product-shell h3 { font-family: Outfit, Inter, system-ui, sans-serif; }
 .forge-product-shell :focus-visible { outline: 2px solid var(--ef-signal); outline-offset: 3px; }
+
+/* Visual profile: minimal studio + precise futurist signals. */
+.forge-product-shell[data-visual-profile="minimal-futurism"] {
+  background: linear-gradient(180deg, #05070a, #07090d 56%, #05070a);
+}
+.forge-product-shell[data-visual-profile="minimal-futurism"].studio-grid {
+  background-image: linear-gradient(to bottom, rgba(107,163,255,.025) 1px, transparent 1px);
+  background-size: 100% 64px;
+}
+.forge-product-shell[data-visual-profile="minimal-futurism"] .glass-card {
+  backdrop-filter: none;
+  background: rgba(12,17,23,.92);
+  border-color: rgba(148,163,184,.14);
+  border-radius: 14px;
+}
+.forge-product-shell[data-visual-profile="minimal-futurism"] .text-glow { text-shadow: none; }

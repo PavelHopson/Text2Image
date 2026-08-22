@@ -21,3 +21,5 @@
 - 2026-08-20: removed the remaining Google Fonts runtime request. Inter, Outfit and JetBrains Mono are
   now served as integrity-pinned local WOFF2 subsets with `font-display: swap`, unchanged family/weight
   contracts, fallback stacks and bundled SIL OFL notices.
+
+- 2026-08-22: assigned the `minimal-futurism` profile: flatter work surfaces, a quiet technical grid and no decorative text glow. Typecheck, four provenance/security tests and production build pass; provider credentials, export policy and rights gates are unchanged.
