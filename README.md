@@ -1,13 +1,64 @@
-# Text2Image Studio
+# Text2Image
 
-[![Demo](https://img.shields.io/badge/Demo-text2image--studio.pages.dev-6d28d9?style=for-the-badge&logo=cloudflarepages&logoColor=white)](https://text2image-studio.pages.dev)
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)](https://react.dev/)
-[![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=flat-square&logo=vite)](https://vite.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
-[![Gemini](https://img.shields.io/badge/Gemini-Image_Generation-4285F4?style=flat-square&logo=google-gemini)](https://ai.google.dev/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+![Text2Image: Промпт → Генерация → Изображение](docs/assets/repository-cover.svg)
 
-Text2Image Studio — AI-студия для генерации изображений по тексту с prompt enhancement, каталогом шаблонов, локальной историей и переключением провайдеров.
+**Генерация изображений.** Интерфейс текстовой генерации изображений с несколькими AI-провайдерами и настройками результата.
+
+<!-- repository-guide:start -->
+[Интерфейс](#readme-interface) · [Первый запуск](#readme-start) · [Что внутри](#readme-map) · [Путеводитель](docs/repository-guide.md#start) · [Карта кода](docs/repository-guide.md#map) · [Проверки](docs/repository-guide.md#checks) · [Границы и права](docs/repository-guide.md#boundaries)
+
+<a id="readme-interface"></a>
+
+## Интерфейс
+
+![Text2Image — Панель генератора: промпт, стили и область результата. Снято без ключа и без генерации.](docs/assets/ui/overview.png)
+
+**Панель генератора: промпт, стили и область результата. Снято без ключа и без генерации.**
+
+Локальный снимок от 8 сентября 2026: отдельный профиль браузера, без внешних API и пользовательских секретов. Это вид интерфейса, не подтверждение production-функций.
+
+<details>
+<summary><strong>Мобильный экран · 390 px</strong></summary>
+
+<img src="docs/assets/ui/mobile.png" alt="Text2Image — мобильный экран" width="390">
+
+</details>
+
+[Открыть в полном размере](docs/assets/ui/overview.png) · [Данные снимка](docs/assets/ui/capture.json)
+
+<a id="readme-map"></a>
+
+## Проект за минуту
+
+- **[Генератор](<src/pages/Generator.tsx>)** — Промпт, параметры и работа с результатом.
+- **[Каталог промптов](<src/pages/PromptCatalog.tsx>)** — Повторное использование подготовленных запросов.
+- **[Медиа-контракт](<src/services/mediaAssetContract.ts>)** — Структура передачи визуального артефакта.
+
+<a id="readme-start"></a>
+
+## Начать локально
+
+**Среда:** Node.js и npm. **Источник:** [package.json](<package.json>).
+
+Из корня клонированного репозитория:
+
+```bash
+npm ci
+npm run dev
+```
+
+Интерфейс и внешние AI-вызовы — разные этапы. До подключения провайдера проверьте настройки, стоимость и обработку ключей; значения секретов в README не размещаются.
+
+<details>
+<summary><strong>Перед первым запуском и изменением кода</strong></summary>
+
+- Команды сверены с исходниками 8 сентября 2026. Это инструкция, а не отметка об успешном запуске или текущем production.
+- Установка зависимостей может обращаться в registry и выполнять lifecycle scripts. Используйте отдельную рабочую среду и демонстрационные данные.
+- Провайдеры имеют разные условия хранения и использования данных; ключи и стоимость проверяются до запуска.
+- [ROADMAP.md](<ROADMAP.md>)
+
+</details>
+<!-- repository-guide:end -->
 
 ## Что умеет
 

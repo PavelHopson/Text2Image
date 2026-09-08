@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "project": "Text2Image",
+  "capturedAt": "2026-09-08T09:48:53.162Z",
+  "caption": "Панель генератора: промпт, стили и область результата. Снято без ключа и без генерации.",
+  "method": "isolated-local-source-preview",
+  "context": "Local source preview, clean browser storage, reduced motion, no .env, external resources and backend APIs blocked. Repository content only, no additional fixtures or personal history; no production verification.",
+  "sourceHead": "330c57216f6f6f28d0e991446b16fb82708a95c0",
+  "sourceWorktreeDirty": true,
+  "entryFiles": [
+    {
+      "file": "index.html",
+      "sha256": "c31b11ecfd3a1985fa3325cb820851b066c0d5efb20067d8470b67c95614c9b9"
+    },
+    {
+      "file": "package.json",
+      "sha256": "7be44cf1913fc6b3dda474f429e11f73d702bc90fa9173fd4d74b41b0faef649"
+    },
+    {
+      "file": "src/main.tsx",
+      "sha256": "240903a71d5933c9b6910e054295ec4551c18803cd024ad6ef6d52134d96202a"
+    }
+  ],
+  "screenshots": [
+    {
+      "kind": "overview",
+      "file": "overview.png",
+      "width": 1440,
+      "height": 900,
+      "sha256": "127a25b268663b9a051daedbceb261ac685e63b11729692b4fc2d9c55f39f9ee",
+      "bytes": 93296
+    },
+    {
+      "kind": "mobile",
+      "file": "mobile.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "480a41edfe94fa72d53f1f85838356c06e6fbcc449cd3fbd0e5ab9ebbe1a13ce",
+      "bytes": 65287
+    }
+  ],
+  "review": "Desktop and selected mobile captures visually reviewed before documentation use."
+}
