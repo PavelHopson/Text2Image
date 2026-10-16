@@ -1,5 +1,9 @@
 # Text2Image
 
+<!-- project-links:start -->
+[Открыть веб-версию](https://text2image-studio.pages.dev) · [Документация](docs/repository-guide.md) · [Код](https://github.com/PavelHopson/Text2Image/tree/master) · [История изменений](https://github.com/PavelHopson/Text2Image/commits/master/)
+<!-- project-links:end -->
+
 ![Text2Image: Промпт → Генерация → Изображение](docs/assets/repository-cover.svg)
 
 **Генерация изображений.** Интерфейс текстовой генерации изображений с несколькими AI-провайдерами и настройками результата.
@@ -71,7 +75,9 @@ npm run dev
 - Настройка AI-провайдера и модели без отдельного backend
 - Export metadata-only `eclipse.media-asset.v1` passport for local validation in Eclipse Media
 
-## Product radar
+<a id="product-radar"></a>
+
+## Источники и идеи развития
 
 Источник: [Eclipse Library · July 2026 project integration](https://library.eclipse-forge.ru/#guide/july-2026-project-integration).
 
@@ -142,8 +148,10 @@ npm run build
 ## Demo
 
 [text2image-studio.pages.dev](https://text2image-studio.pages.dev)
-## Eclipse Forge visual contract
+<a id="eclipse-forge-visual-contract"></a>
+
+## Визуальный стандарт Eclipse Forge
 
 Text2Image uses the local `eclipse-forge.visual-system.v1` snapshot in the `product` profile: self-hosted Outfit/Inter/JetBrains Mono typography, signal-blue actions, warm-gold accents, grid/grain depth and reduced-motion-safe transitions. The token/font snapshot is served by this application and does not depend on the Landing or Google Fonts at runtime. Font provenance, hashes and OFL notices are stored in `public/fonts`.
 
-Visual pilot verified on 2026-08-12 with TypeScript and production build. Compatible lockfile remediation clears the production dependency audit.
+Историческая проверка визуального пилота от 12 августа 2026: TypeScript и production-сборка. Тогда также обновлён совместимый lockfile для устранения замечаний аудита production-зависимостей.
