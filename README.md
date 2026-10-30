@@ -13,7 +13,7 @@
 
 [Главная Eclipse Forge](https://eclipse-forge.ru/) · [Eclipse Library](https://library.eclipse-forge.ru/) · [Eclipse DnD Forge](https://dnd.eclipse-forge.ru/)
 
-Исходный код: [Eclipse Forge Landing](https://github.com/PavelHopson/Eclipse-forge-website) · [Eclipse Chat](https://github.com/PavelHopson/eclipse-chat) · [Eclipse Connect](https://github.com/PavelHopson/eclipse-connect) · [Eclipse Library](https://github.com/PavelHopson/eclipse-library) · [Eclipse AI Hub](https://github.com/PavelHopson/eclipse-ai-hub) · [Eclipse Ultron / Sentinel](https://github.com/PavelHopson/eclipse-hopson-sentinel) · [Eclipse Webclaw](https://github.com/PavelHopson/Eclipse-webclaw) · [Eclipse DnD Forge](https://github.com/PavelHopson/eclipse-dnd-forge) · [Finflow](https://github.com/PavelHopson/finflow) · [Eclipse Media](https://github.com/PavelHopson/eclipse-media) · [Shotforge](https://github.com/PavelHopson/shotforge) · [Text2Image](https://github.com/PavelHopson/Text2Image) · [Educator AI](https://github.com/PavelHopson/Educator-AI) · [@pavelhopson/retry-http](https://github.com/PavelHopson/retry-http)
+Исходный код: [Eclipse Forge Landing](https://github.com/PavelHopson/Eclipse-forge-website) · [Eclipse Chat](https://github.com/PavelHopson/eclipse-chat) · [Eclipse Library](https://github.com/PavelHopson/eclipse-library) · [Eclipse AI Hub](https://github.com/PavelHopson/eclipse-ai-hub) · [Eclipse Sentinel](https://github.com/PavelHopson/eclipse-hopson-sentinel) · [Eclipse Webclaw](https://github.com/PavelHopson/Eclipse-webclaw) · [Eclipse DnD Forge](https://github.com/PavelHopson/eclipse-dnd-forge) · [Finflow](https://github.com/PavelHopson/finflow) · [Eclipse Media](https://github.com/PavelHopson/eclipse-media) · [Shotforge](https://github.com/PavelHopson/shotforge) · [Text2Image](https://github.com/PavelHopson/Text2Image) · [Educator AI](https://github.com/PavelHopson/Educator-AI) · [@pavelhopson/retry-http](https://github.com/PavelHopson/retry-http)
 <!-- eclipse-forge-projects:end -->
 
 <!-- repository-guide:start -->
@@ -83,9 +83,7 @@ npm run dev
 - Настройка AI-провайдера и модели без отдельного backend
 - Export metadata-only `eclipse.media-asset.v1` passport for local validation in Eclipse Media
 
-<a id="product-radar"></a>
-
-## Источники и идеи развития
+## Product radar
 
 Источник: [Eclipse Library · July 2026 project integration](https://library.eclipse-forge.ru/#guide/july-2026-project-integration).
 
@@ -156,10 +154,8 @@ npm run build
 ## Demo
 
 [text2image-studio.pages.dev](https://text2image-studio.pages.dev)
-<a id="eclipse-forge-visual-contract"></a>
-
-## Визуальный стандарт Eclipse Forge
+## Eclipse Forge visual contract
 
 Text2Image uses the local `eclipse-forge.visual-system.v1` snapshot in the `product` profile: self-hosted Outfit/Inter/JetBrains Mono typography, signal-blue actions, warm-gold accents, grid/grain depth and reduced-motion-safe transitions. The token/font snapshot is served by this application and does not depend on the Landing or Google Fonts at runtime. Font provenance, hashes and OFL notices are stored in `public/fonts`.
 
-Историческая проверка визуального пилота от 12 августа 2026: TypeScript и production-сборка. Тогда также обновлён совместимый lockfile для устранения замечаний аудита production-зависимостей.
+Visual pilot verified on 2026-08-12 with TypeScript and production build. Compatible lockfile remediation clears the production dependency audit.
